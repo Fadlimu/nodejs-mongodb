@@ -1,0 +1,10 @@
+extends layout
+
+block content
+	h1.text-center Edit Task
+	form(method='post', action='/crud/edit/#{result._id}')
+		.input-group
+			input.form-control(value='#{result.content}', name='content')
+			span.input-group-btn
+				input.btn.btn-primary(type='submit', value='Edit')
+				a(href='/crud').btn.btn-default Back

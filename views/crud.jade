@@ -1,0 +1,33 @@
+extends layout
+
+block content
+	h1.text-center All Task
+	table.table.table-condensed
+		thead
+			tr
+				th Your Task
+				th(style='width:10%') Status
+				th(style='width:4%')
+				th(style='width:6%')
+		tbody
+			each result in crud
+				tr
+					td
+						a(href='/crud/#{result._id}') #{result.content}
+
+					td #{result.completed} 
+
+					td
+						form(action='/crud/completed/#{result._id}', method='post')
+							input.btn.btn-success.pull-right(type='submit', value='✔')
+
+					td
+						form(action='/crud/destroy/#{result._id}', method='post')
+							input.btn.btn-danger.pull-right(type='submit', value='Delete')
+				tr
+	
+	form(method='post', action='/crud/create')
+		.input-group
+			input.form-control(type='text', placeholder='What do you have to do?', name='content', required)
+			span.input-group-btn
+				input.btn.btn-success(type='submit', value='Create')
